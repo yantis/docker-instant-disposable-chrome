@@ -17,7 +17,14 @@ MAINTAINER Jonathan Yantis <yantis@yantis.net>
 RUN pacman -Syyu --noconfirm && \
 
     # Install Google Chrome
-    pacman --noconfirm -S google-chrome libexif && \
+    pacman --noconfirm -S google-chrome libexif \
+        --assume-installed python \
+        --assume-installed python-xdg \
+        --assume-installed hwids \
+        --assume-installed kbd \
+        --assume-installed kmod \
+        --assume-installed libseccomp \
+        --assume-installed systemd && \
 
     # Cleanup
     rm -r /usr/share/man/* && \
