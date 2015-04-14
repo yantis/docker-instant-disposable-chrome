@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Docker-instant-disposable-chrome by yantis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Docker-instant-disposable-chrome</h1>
+      <h2 class="project-tagline">Instant Disposable Google Chrome Docker Container</h2>
+      <a href="https://github.com/yantis/docker-instant-disposable-chrome" class="btn">View on GitHub</a>
+      <a href="https://github.com/yantis/docker-instant-disposable-chrome/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/yantis/docker-instant-disposable-chrome/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="instant-disposable-chrome" class="anchor" href="#instant-disposable-chrome" aria-hidden="true"><span class="octicon octicon-link"></span></a>instant-disposable-chrome</h1>
+
+<p>On Docker hub <a href="https://registry.hub.docker.com/u/yantis/instant-disposable-chrome/">instant-disposable-chrome</a>
+on Github <a href="https://github.com/yantis/docker-instant-disposable-chrome">docker-instant-disposable-chrome</a></p>
+
+<p>I find myself every once in a while wanting to checkout a website but not from my IP address.
+You might want to do the same. Possibly for anonymous reasons (ie: checking out a competitor), 
+testing or maybe u want to want a lot more bandwidth that you usually have.</p>
+
+<p>The script will create a brand new base Amazon Linux instance, then install docker, and setup
+Google Chrome over SSH using X-forwarding and then load up Chrome with the website of your choosing.
+When you close the webpage it will delete the instance. All without any interaction from you.</p>
+
+<p>You may want to modify the script for something other than AWS or just use the container locally 
+If you are looking at using it for something else checkout the base image <a href="https://github.com/yantis/docker-ssh-hpn-x">here</a></p>
+
+<p>It is setup to work with Amazon's free tier instances.</p>
+
+<h2>
+<a id="setup" class="anchor" href="#setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setup</h2>
+
+<p>At a minimum you need to set up your private key name and your subnet ID in the "instant-chrome" file.
+You are also going to need to have <a href="https://github.com/aws/aws-cli">aws cli</a> installed.
+On Arch Linux this is on the AUR as <a href="https://aur.archlinux.org/packages/aws-cli">aws-cli</a></p>
+
+<div class="highlight highlight-bash"><pre>KEYNAME=yantisec2
+SUBNETID=subnet-d260adb7
+REGION=us-west-2</pre></div>
+
+<p>Then just copy "instant-chrome" over to your /usr/bin directory</p>
+
+<h2>
+<a id="run" class="anchor" href="#run" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run</h2>
+
+<p>To run it just type it instant-chrome and the website name like:</p>
+
+<div class="highlight highlight-bash"><pre>instant-chrome www.youtube.com</pre></div>
+
+<p>or</p>
+
+<div class="highlight highlight-bash"><pre>instant-chrome https://www.youtube.com</pre></div>
+
+<p>Here is a screenshot of Google Chrome running on an AWS ec2 instance.
+<img src="http://yantis-scripts.s3.amazonaws.com/screenshot_20150409-053305.jpg" alt=""></p>
+
+<h2>
+<a id="warnings" class="anchor" href="#warnings" aria-hidden="true"><span class="octicon octicon-link"></span></a>Warnings</h2>
+
+<p>There are security implications associated with X-Forwarding.
+It is advisable to read up on it. This is a good <a href="https://padraic2112.wordpress.com/2007/07/09/bad-security-201-remote-x-sessions-over-ssh/">post</a></p>
+
+<p>As an example you might actually be less secure by running chrome without a sandbox to not have to run the
+container as privileged than simply running as privileged with sandbox mode enabled since the machine
+you are connecting from might be more important to secure than the server. If that is the case you can
+simply remove the --no-sandbox flag on chrome and add a ---privileged on docker.
+(Would love to know your thoughts on this. Maybe I should change the default around?)</p>
+
+<p>Either way you should just assume you are being <a href="http://www.zdnet.com/article/pwn2own-2015-the-year-every-browser-went-down/">hacked all the time</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/yantis/docker-instant-disposable-chrome">Docker-instant-disposable-chrome</a> is maintained by <a href="https://github.com/yantis">yantis</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-61848149-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
+
