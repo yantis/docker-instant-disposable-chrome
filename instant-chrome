@@ -28,7 +28,7 @@ IMAGEID=ami-e7527ed7
 # Exit the script if any statements returns a non true (0) value.
 set -e
 
-# Exit the script on any uninitalized variables.
+# Exit the script on any uninitialized variables.
 set -u
 
 # Create our new instance
@@ -88,7 +88,7 @@ ssh -Y \
          --no-service-autorun \
          --use-system-title-bar \
          --window-size=1600,1200 \
-         --new-window $1
+         --new-window $2
 
 # Now that we are done. Delete the instance.
 aws ec2 terminate-instances  --instance-ids $ID

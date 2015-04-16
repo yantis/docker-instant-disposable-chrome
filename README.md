@@ -16,6 +16,19 @@ If you are looking at using it for something else checkout the base image [here]
 
 It is setup to work with Amazon's free tier instances.
 
+### Docker Images Structure
+>[yantis/archlinux-tiny](https://github.com/yantis/docker-archlinux-tiny)
+>>[yantis/archlinux-small](https://github.com/yantis/docker-archlinux-small)
+>>>[yantis/archlinux-small-ssh-hpn](https://github.com/yantis/docker-archlinux-ssh-hpn)
+>>>>[yantis/ssh-hpn-x](https://github.com/yantis/docker-ssh-hpn-x)
+>>>>>[yantis/dynamic-video](https://github.com/yantis/docker-dynamic-video)
+>>>>>[yantis/instant-disposable-chrome](https://github.com/yantis/docker-instant-disposable-chrome)
+>>>>>[yantis/filezilla](https://github.com/yantis/docker-filezilla)
+>>>>>[yantis/thunderbird](https://github.com/yantis/docker-thunderbird)
+>>>>>>[yantis/virtualgl](https://github.com/yantis/docker-virtualgl)
+>>>>>>>[yantis/wine](https://github.com/yantis/docker-wine)
+
+
 ## Setup
 At a minimum you need to set up your private key name and your subnet ID in the "instant-chrome" file.
 You are also going to need to have [aws cli](https://github.com/aws/aws-cli) installed.
