@@ -17,7 +17,7 @@ MAINTAINER Jonathan Yantis <yantis@yantis.net>
 RUN pacman -Syy --noconfirm && \
 
     # Install Google Chrome
-    pacman --noconfirm -S google-chrome libexif \
+    pacman --noconfirm -S google-chrome libexif libcanberra \
         --assume-installed python \
         --assume-installed python-xdg \
         --assume-installed hwids \
@@ -26,9 +26,13 @@ RUN pacman -Syy --noconfirm && \
         --assume-installed libseccomp \
         --assume-installed systemd && \
 
+    # generate dbus UUID
+    bash -c "dbus-uuidgen > /var/lib/dbus/machine-id" && \
+
     # Cleanup
     rm -r /usr/share/man/* && \
     rm -r /usr/share/doc/* && \
+
     bash -c "echo 'y' | pacman -Scc >/dev/null 2>&1" && \
     paccache -rk0 >/dev/null 2>&1 &&  \
     pacman-optimize && \
