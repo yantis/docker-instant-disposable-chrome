@@ -88,7 +88,7 @@ ssh -Y \
          --no-service-autorun \
          --use-system-title-bar \
          --window-size=1600,1200 \
-         --new-window $2
+         --new-window $1
 
 # Now that we are done. Delete the instance.
 aws ec2 terminate-instances  --instance-ids $ID
