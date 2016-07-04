@@ -13,8 +13,8 @@
 FROM yantis/ssh-hpn-x
 MAINTAINER Jonathan Yantis <yantis@yantis.net>
 
-    # Update and force a refresh of all package lists even if they appear up to date.
-RUN pacman -Syyu --noconfirm && \
+# Don't update
+RUN pacman -Syy --noconfirm && \
 
     # Install Google Chrome
     pacman --noconfirm -S google-chrome libexif \
